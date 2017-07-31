@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SETTINGS>
+<General_Properties>
+	<rotationAngle value="0" />
+	<rotationAngleType value="path" />
+	<thumbWidth value="70" />
+	<thumbHeight value="75" />
+	<radiusX value="350" />
+	<radiusY value="120" />
+	<centerX value="600" />
+	<centerY value="150" />
+	<perspective value="50" />
+	<useBlur value="false" />
+	<blurIntensity value="6" />
+	<useAlpha value="true" />
+	<alphaIntensity value="9" />
+	<backgroundColor value="0" />
+	<carouselWidth value="1000" />
+	<carouselHeight value="600" />
+	<showCenteredImage value="true" />
+	<centeredImageAlpha value="100" />
+	<imagesXML value="resource/images.xml" />
+	<useMouseWheel value="true" />
+</General_Properties>
+
+<Rotation_Properties>
+	<!--<rotateOnRollOver value="both" />-->
+	<onRollOverSpeed value="25" />
+	<onRollOutSpeed value="5" />
+	<stoppingSpeed value="20" />
+	<stopOnRollOver value="true" />
+	<inverseRotation value="none" />
+	<!--<buttonsX value="110" />
+	<buttonsY value="310" />
+	<buttonsDistance value="300" />
+	<buttonSymbol value="but1" />-->
+</Rotation_Properties>
+
+<Reflection_Properties>
+	<useReflection value="true" />
+	<reflectionAlpha value="30" />
+	<reflectionSpread value="30" />
+	<reflectionDistance value="1" />
+</Reflection_Properties>
+
+<Roll_Over_Properties>
+	<rollOverBehavior value="smooth" />
+	<brightnessOver value="15" />
+	<brightnessOut value="-25" />
+	<brightnessSpeed value="7" />
+</Roll_Over_Properties>
+
+<Tooltip_Properties>
+	<visibility value="all" />
+	<position value="bottom" />
+	<appearance value="top" />
+	<backColor value="0xeeeeee" />
+	<backAlpha value="25" />
+	<cornerRadius value="3" />
+	<easingFunction value="Regular" />
+	<easingDuration value="0.5" />
+	<fontFace value="Verdana" />
+	<fontSize value="12" />
+	<fontColor value="0x333333" />	
+</Tooltip_Properties>
+
+<Frame_Properties>
+	<imageFrames value="none" />
+	<frameThickness value="4" />
+	<frameColor value="0xeeeeee" />
+	<frameAlpha value="70" />
+	<frameRadius value="13" />
+</Frame_Properties>
+</SETTINGS>

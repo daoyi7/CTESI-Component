@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+This is the XML from which the SWF file reads the following data:
+
+image - the thumb image in the menu.
+bigimage - the big image shown in Lightbox;  ignore it if you're not using Lightbox
+url - the address to go to when clicking the image
+target - _self - opens the url in the same browser page
+	 - _blank - opens the url in a new browser page
+	- a number - executes _root.gotoAndPlay(number); in Flash - available only in the commercial package
+lightboxInfo - the description for the bigimage;  ignore it if you're not using Lightbox
+
+The tooltip text is recorded as CDATA. You can use HTML tags like "<br>"
+-->
+<Carousel centeredImage="">
+	<photo image="resource/flash/flashimages/01.png" url="" target="_self"><![CDATA[战略制定]]></photo>
+	<photo image="resource/flash/flashimages/02.png" url="" target="_self"><![CDATA[战略主题]]></photo>
+	<photo image="resource/flash/flashimages/03.png" url="" target="_self"><![CDATA[战略目标]]></photo>
+	<photo image="resource/flash/flashimages/04.png" url="" target="_self"><![CDATA[战略指标]]></photo>
+	<photo image="resource/flash/flashimages/05.png" url="" target="_self"><![CDATA[指标分析]]></photo>
+	<photo image="resource/flash/flashimages/06.png" url="" target="_self"><![CDATA[计划任务]]></photo>
+	<photo image="resource/flash/flashimages/07.png" url="" target="_self"><![CDATA[运营流程]]></photo>  
+	<photo image="resource/flash/flashimages/08.png" url="" target="_self"><![CDATA[考核体系]]></photo>  
+	<photo image="resource/flash/flashimages/09.png" url="" target="_self"><![CDATA[资金管理]]></photo>  
+	<photo image="resource/flash/flashimages/10.png" url="" target="_self"><![CDATA[战略分析]]></photo>  
+	<photo image="resource/flash/flashimages/11.png" url="" target="_self"><![CDATA[考核分析]]></photo>  
+	<photo image="resource/flash/flashimages/12.png" url="" target="_self"><![CDATA[资金分析]]></photo>  
+	<photo image="resource/flash/flashimages/13.png" url="" target="_self"><![CDATA[晋级休系]]></photo>  
+</Carousel>
