@@ -71,8 +71,9 @@ function runGantt() {
     };
 
     var i = 0,
+        timer = null,
         beginDate = new Date(2007, 0, 1, 00, 00, 00),
-        endDate = new Date(2007, 0, 8, 00, 00, 00),
+        endDate = new Date(2007, 0, 5, 00, 00, 00),
         runName = "时间线",
         endName = "终点线",
         runPos = "bottom",
@@ -81,8 +82,10 @@ function runGantt() {
         endColor = "green",
         runW = 2,
         endW = 2,
-        speed = 86400,
-        time = 2000;
+        speed = 3600,
+        time = 20;
+
+    var btn = document.getElementById("btn");
 
 //    设置时间线
     project.setTimeLines([
@@ -90,8 +93,9 @@ function runGantt() {
         {date: endDate, text: endName, position: endPos, style: "width:" + endW + "px;background:" + endColor + ";"}
     ]);
 
-    document.getElementById("btn").onclick = function () {
-        var timer = setInterval(function () {
+    btn.onclick = function () {
+        clearInterval(timer);
+        timer = setInterval(function () {
             i = i + 1;
             //  开始运动
             var runDate = new Date((beginDate / 1000 + speed * i) * 1000);
@@ -110,6 +114,19 @@ function runGantt() {
                 }
             ]);
             project.scrollToDate(runDate);
+
+            btn.onclick=function () {
+                endDate = new Date(2007, 0, 8, 00, 00, 00);
+                // clearInterval(timer);
+                // btn.onclick=function () {
+                //     timer = setInterval(function () {
+                //         i = i + 1;
+                //         //  开始运动
+                //         runDate = new Date((beginDate / 1000 + speed * i) * 1000);
+                //         project.scrollToDate(runDate);
+                //     },time)
+                // }
+            }
 
             if (runDate / 1000 === endDate / 1000) {
                 clearInterval(timer);
