@@ -17,7 +17,7 @@
     </div>
     <div style="clear: both;"></div>
     <button id="start" class="btn">开始</button>
-    <button id="reset" class="btn">重置</button>
+    <!--<button id="reset" class="btn">重置</button>-->
 </div>
 </body>
 </html>
@@ -34,17 +34,17 @@
     project.setStyle("width:100%;height:400px");
     project.setColumns([
         new PlusProject.IDColumn(),
-        new PlusProject.StatusColumn(),
+//        new PlusProject.StatusColumn(),
         new PlusProject.NameColumn(),
-        new PlusProject.PredecessorLinkColumn(),
-        new PlusProject.PercentCompleteColumn(),
-        new PlusProject.DurationColumn(),
+//        new PlusProject.PredecessorLinkColumn(),
+//        new PlusProject.PercentCompleteColumn(),
+//        new PlusProject.DurationColumn(),
         new PlusProject.StartColumn(),
         new PlusProject.FinishColumn(),
-        new PlusProject.WorkColumn(),
-        new PlusProject.DepartmentColumn(),
-        new PlusProject.PrincipalColumn(),
-        new PlusProject.AssignmentsColumn()
+//        new PlusProject.WorkColumn(),
+//        new PlusProject.DepartmentColumn(),
+//        new PlusProject.PrincipalColumn(),
+//        new PlusProject.AssignmentsColumn()
     ]);
     project.render(document.getElementById("viewCt"));
 
@@ -52,7 +52,7 @@
     var params = mini.getParams();  //...?id=100        获取URL的项目id信息
     var projectUID = params.id;
     if (projectUID == null) {   //如果没有传递项目id，则加载JSON格式项目数据演示和操作
-        LoadJSONProject("data/project.txt", project);
+        LoadJSONProject("projectHSZ.txt", project);
     } else {
         LoadProject(projectUID, project);
     }
