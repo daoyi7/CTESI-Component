@@ -5,16 +5,32 @@
     <title>Title</title>
 </head>
 <body>
-
-<script src="jquery-1.6.2.min.js"></script>
-<script src="hsz.js"></script>
+<button id="btn">button</button>
 <script>
-$(function () {
-    $(hsz).each(function (index) {
-        var arr =$(this);
-        console.log(arr[0].Name)
-    })
-})
+    var btn = document.getElementById('btn'),
+        timer = null,
+        arr = [1, 2, 3];
+
+    arr1 = arr.reduce(function (sum, value) {
+        var all = sum.length === 0 ? 0 : sum[sum.length - 1];
+        sum.push(all + value);
+        return sum;
+    }, [])
+
+    btn.onclick = function () {
+        console.log(123)
+        timer = setInterval(function () {
+            var yItem = Math.ceil(Math.random() * 10);
+            var bbb = arr1[arr1.length-1]+yItem
+
+//            arr.shift()
+            arr1.shift()
+//            arr.push(yItem)
+            arr1.push(bbb)
+            console.log(arr1)
+//            console.log(arr1[arr1.length-1]+yItem)
+        }, 1500)
+    }
 </script>
 </body>
 </html>
