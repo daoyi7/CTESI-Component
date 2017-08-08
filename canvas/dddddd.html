@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dddddddemo</title>
+    <style>
+        .btn0 {
+            width:80px;
+            height:35px;
+            line-height: 35px;
+            text-align: center;
+            border-radius:8px;
+            background-color: #eee;
+            float: left;
+            margin-right: 8px;
+        }
+        .btn-active {
+            color: #fff;
+        }
+        .btn1.btn-active {
+            background-color: green;
+        }
+        .btn2.btn-active {
+            background-color: yellow;
+        }
+        .btn3.btn-active {
+            background-color: black;
+        }
+        .btn4.btn-active {
+            background-color: blue;
+        }
+        .btn5.btn-active {
+            background-color: pink;
+        }
+        .btn6.btn-active {
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+<div class="btn0 btn1">按钮1</div>
+<div class="btn0 btn2">按钮1</div>
+<div class="btn0 btn3">按钮1</div>
+<div class="btn0 btn4">按钮1</div>
+<div class="btn0 btn5">按钮1</div>
+<div class="btn0 btn6">按钮1</div>
+
+<script src="js/jquery-1.7.min.js"></script>
+<script>
+    $(".btn0").click(function () {
+        $(this).toggleClass("btn-active")
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="css/jquery-3.2.1.min.js"></script>
+    <script src="css/echarts.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="item">
+        <div class="item-head">
+            <h2>投资完成情况KPI</h2>
+            <p class="item-btn">
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+            </p>
+            <div class="clear"></div>
+        </div>
+        <div id="kpi" class="item-body">
+            <div id="gs" class="kpi-item">
+                <h2>计划投资额(估算):</h2>
+                <span>3499.95万</span>
+            </div><div id="yq" class="kpi-item">
+                <h2>合同额(已签):</h2>
+                <span>10336.10万</span>
+            </div><div id="jl" class="kpi-item">
+                <h2>实际投资(计量):</h2>
+                <span>11403.88万</span>
+            </div><div id="ys" class="kpi-item">
+                <h2>请款报审(已审):</h2>
+                <span>5161.16万</span>
+            </div><div id="yf" class="kpi-item">
+                <h2>支付金额(已付):</h2>
+                <span>5141.16万</span>
+            </div><div id="wzf" class="kpi-item">
+                <h2>欠付额(未支付):</h2>
+                <span>20.00万</span>
+            </div>
+        </div>
+    </div>
+    <div class="item item-right">
+        <div class="item-head">
+            <h2>五算分析</h2>
+            <p class="item-btn">
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+            </p>
+            <div class="clear"></div>
+        </div>
+        <div id="analysis" class="item-body"></div>
+    </div>
+    <div class="item">
+        <div class="item-head">
+            <h2>质量安全事故分析</h2>
+            <p class="item-btn">
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+            </p>
+            <div class="clear"></div>
+        </div>
+        <div id="qsafe" class="item-body"></div>
+    </div>
+    <div class="item item-right">
+        <div class="item-head">
+            <h2>签证变更费用</h2>
+            <p class="item-btn">
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+            </p>
+            <div class="clear"></div>
+        </div>
+        <div id="visachange" class="item-body"></div>
+    </div>
+</div>
+<script src="css/demo.js"></script>
+<script>
+    var analysis = document.getElementById('analysis'),
+        qsafe = document.getElementById('qsafe'),
+        visachange = document.getElementById('visachange');
+
+    var ecAnalysis = echarts.init(analysis),
+        ecQsafe = echarts.init(qsafe),
+        ecVisachange = echarts.init(visachange);
+
+    var optionAnalysis = {
+        title: {
+            text: '五算分析',
+            left: 10,
+            top: 10
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow',
+                label: {
+                    show: true
+                }
+            }
+        },
+        xAxis: {
+            data: [
+                "投资估算",
+                "设计概念",
+                "合同额",
+                "计量额",
+                "签证额",
+                "设计变更额",
+                "请款报审",
+                "支付金额",
+                "欠付金额",
+                "结算合同款"
+            ]
+        },
+        yAxis: {},
+        series: [{
+            name: '金额',
+            type: 'bar',
+            data: [34999505.71, 445000, 103361000, 114038834.26, 10012000, 23001000, 51611600, 51411600, 20000, 8830000],
+            itemStyle: {
+                normal: {
+                    color: function (params) {
+                        var colorList = [
+                            '#2196F3', '#f44336', '#673ab7', '#8bc34a', '#009688', '#ff5722', '#00bcd4', '#c73aaf', '#afa9ae', '#3ee8a2'
+                        ];
+                        return colorList[params.dataIndex]
+                    }
+                }
+            },
+            barWidth: 20
+        }]
+    };
+    ecAnalysis.setOption(optionAnalysis);
+
+    var optionQsafe = {
+        title: {
+            text: '安全事故分析',
+            left: 10,
+            top: 10
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['质量事故', '安全事故']
+        },
+        xAxis: {
+            data: [
+                "中国核建.紫金一品",
+                "儿科大楼",
+                "外科大楼",
+                "宏源大学路面翻新工程"
+            ]
+        },
+        yAxis: {
+            data: ['0', '1', '2', '3']
+        },
+        series: [
+            {
+                name: '质量事故',
+                type: 'line',
+                data: [2, 0, 0, 0],
+//                markPoint: {
+//                    data: [
+//                        {type: 'max', name: '最大值'},
+//                        {type: 'min', name: '最小值'}
+//                    ]
+//                },
+                markLine: {
+                    data: [
+                        {
+                            name: '警戒线',
+                            yAxis: 2.5
+                        },
+                    ]
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#3ee8a2'
+                    }
+                }
+            },
+            {
+                name: '安全事故',
+                type: 'line',
+                data: [2, 0, 0, 0],
+//                markPoint: {
+//                    data: [
+//                        {type: 'max', name: '最大值'},
+//                        {type: 'min', name: '最小值'}
+//                    ]
+//                },
+                markLine: {
+                    data: [
+                        {
+                            name: '警戒线',
+                            yAxis: 2.5
+                        },
+                    ]
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#2196F3'
+                    }
+                }
+            }
+        ]
+    };
+    ecQsafe.setOption(optionQsafe);
+
+    var optionVisachange = {
+        title: {
+            text: '签证变更费用',
+            left: 10,
+            top: 10
+        },
+        legend: {
+            data: ['设计变更金额', '签证金额']
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow',
+                label: {
+                    show: true
+                }
+            }
+        },
+        xAxis: {
+            data: [
+                "2017-02",
+                "2017-03",
+                "2017-04",
+                "2017-05",
+                "2017-06",
+                "2017-07"
+            ]
+        },
+        yAxis: {},
+        series: [
+            {
+                name: '设计变更金额',
+                type: 'bar',
+                data: [0, 0, 0, 1000, 0, 0]
+            },
+            {
+                name: '签证金额',
+                type: 'bar',
+                data: [0, 0, 0, 0, 0, 0]
+            },
+            {
+                name: 'Average',
+                type: 'line',
+                data: [0, 0, 0, 500, 0, 0]
+            }
+        ]
+    };
+    ecVisachange.setOption(optionVisachange);
+</script>
+</body>
+</html>

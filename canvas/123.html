@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+<div id="bar" class="taskbar" style="height: 26px">
+    <div id="taskbar_tag_box" class="taskbar_tag_box">
+        <div id="barTag" class="taskbar_tag">
+            <ul id="barTagUI">
+            </ul>
+        </div>
+    </div>
+    <div id="taskbar_quick" class="taskbar_quick">
+        <a href="#" id="showQuick" title="<%=ShowAll()%>" onclick="bottomBar.addQuickMenu()"
+           onmouseover="return false;">
+            <img src="resource/images/usbc_tasktop.gif" border="0" style="margin-top: 7px;">
+        </a><a href="#" title="<%=IM() %>" onclick="showOnlineUser()">
+        <img state="0" src="resource/images/WebIM/im.gif" id="UcmlMessageImg" style="margin-top: 4px;
+                                border: 0; width: 16px; height: 16px;"/>
+    </a><a href="#" title="<%=SelectPortal() %>" onclick="openPortal()">
+        <img src="resource/images/usbc_taskdesktop.gif" border="0" style="margin-top: 4px;"/>
+    </a><a href="#" title="<%=SkinSwitching() %>" onclick="bottomBar.addQuickSkin()">
+        <img src="resource/images/change_Skin_color_icon.gif" border="0" style="margin-top: 4px;"/>
+    </a>
+        <!--即时通讯在线人员列表-->
+        <div id="onlineList">
+            <iframe frameborder='0' style='-moz-opacity: 0; -webkit-opacity: 0; opacity: 0; position: absolute;
+                                visibility: inherit; top: 0px; right: 0px; height: 100%; width: 180px; z-index: -1;
+                                background: none'></iframe>
+            <div id="onlineListHead">
+                <div id="unreadMsgTab" class="unfocusedTab">
+                    <span class="span-icon"/>
+                    <%=UnreadMessages() %></span>
+                </div>
+                <div id="onlineUserTab" class="focusedTab">
+                    <span class="span-icon"/>
+                    <%=OnlineChat()%></span>
+                </div>
+            </div>
+            <div id="onlineListBody">
+                <div id="unreadMsgContent">
+                    <ul>
+                    </ul>
+                </div>
+                <div id="onlineUserContent">
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <div id="onlineListFoot">
+                <div id="footBarSelect" class="foot-item">
+                                    <span id="selectUser" class="span-icon" onclick="selectUser();">
+                                        <%=SelectUser()%></span>
+                </div>
+                <div id="footBarFlex" class="foot-item unflexed" onclick="toggleIM();" title="<%=ClickToHide() %>">
+                </div>
+            </div>
+        </div>
+        <!--END 即时通讯-->
+    </div>
+    <div id="quickBox" class="taskbox" onmouseover="return false;">
+        <!--  <iframe style="position: absolute; width: 100%; height: 100%; filter: alpha(opacity=0);
+            -moz-opacity: 0"></iframe> -->
+        <iframe frameborder='0' style='-moz-opacity: 0; -webkit-opacity: 0; opacity: 0; position: absolute;
+                            visibility: inherit; top: 0px; left: -15px; height: 100%; width: 150px; z-index: -1;
+                            background: none'></iframe>
+        <ul id="quickBoxul">
+        </ul>
+    </div>
+    <div class="taskbox" id="skin_change_box" onmouseover="return false;">
+        <!--  <iframe style="position: absolute; width: 100%; height: 100%; filter: alpha(opacity=0);
+            -moz-opacity: 0"></iframe>
+    -->
+        <asp:Literal ID="skinBubbleCenter" runat="server"></asp:Literal>
+    </div>
+    <div class="taskbox" id="portal_box" onmouseover="return false;">
+        <!--  <iframe style="position: absolute; width: 100%; height: 100%; filter: alpha(opacity=0);
+            -moz-opacity: 0"></iframe>
+    -->
+        <asp:Literal ID="portalList" runat="server"></asp:Literal>
+    </div>
+</div>
+</body>
+</html>

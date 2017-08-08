@@ -1,0 +1,114 @@
+body
+{
+margin:0px auto;
+padding:0px;
+text-align:center;
+font-family:"宋体";
+font-size:12px;
+}
+
+/*登录页的CSS*/
+.login_body
+{
+
+background:#d0e7c6;/*登录页的整个背景色*/
+}
+.login_bg
+{
+
+text-align:left;
+height:620px;
+}
+.login_logo
+{
+float:left;
+margin-top:30px;
+margin-left:42px;
+width:420px;
+}
+.login_box
+{
+color:#229400;
+font-weight:bold;
+width:480px;
+float:right;
+padding-top:55px;
+position:relative;
+}
+.login_text
+{
+border:1px solid #6cb851;
+width:80px;
+height:20px;
+}
+.login_button
+{
+padding:0px;
+background:url(images/login_button_bg.jpg);
+height:23px;
+width:51px;
+border:1px solid #6cb851;
+font-weight:bold;
+color:#fff;
+margin-bottom:1px;
+}
+
+/*Flash开始*/
+.login_flash_box/*Flash外框和定位*/
+{
+position:relative;
+width:1002px;
+margin:0px auto;
+}
+.login_flash
+{
+	padding-top:-10px;
+	position:absolute;
+	left: 401px;
+	top: 14px;
+}
+.mask
+{
+background:#d0e7c6;
+width:100px;
+height:20px;
+position:absolute;
+}
+
+
+
+
+.roll
+{
+	position:absolute;
+	left: -509px;
+	top: 180px;
+
+}
+/*Flash开始结束*/
+.login_copyright
+{
+text-align:center;
+color:#356a25;
+padding-top:470px;
+width:1000px;
+}
+.login_copyright a:link
+{
+color:#356a25;
+}
+.login_copyright a:visited
+{
+color:#356a25;
+}
+/*登录页的CSS结束*/
+
+
+/*绿色页面登录页样式============*/
+.language{width:63px;height:23px;position:relative;background:url(images/laguage_bg.gif) no-repeat;display:block;font-size:12px;font-weight:bold;line-height:200%;text-indent:10px;
+          position:absolute;right:0px; bottom:2px}
+.language a{color:#fff; text-decoration:none;}
+.language_ul{ display:none;width:63px;padding:0px;margin:0px;background:#eff1ee;position:absolute;top:23px;left:0px;}
+.language_ul li{width:63px;height:28px;font-size:12px;font-weight:bold;line-height:200%;text-indent:5px; list-style:none;}
+.language_ul li a{color:#2a9217; text-decoration:none;}
+.language_ul li a:hover{ text-decoration:underline;}

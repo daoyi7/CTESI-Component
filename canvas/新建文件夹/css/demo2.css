@@ -1,0 +1,90 @@
+.bim-item {
+    height:450px;
+    padding: 0 5px;
+    margin: 5px 0;
+}
+.bim-main {
+    width: 100%;
+    height: 450px;
+    margin: 0;
+    border:1px solid #e0ecfc;
+    margin: 0 15px;
+}
+.bim-head {
+    width: 100%;
+    margin: 0;
+    line-height: 35px;
+    background-color: #e0ecfc;
+    font-size: 14px;
+}
+.item-btn {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin: 6px 0;
+    background: #e0ecfc;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #9e9b9b;
+}
+.item-btn:hover {
+    background: #a9c9f1;
+}
+.bim-body {
+    width: 100%;
+    margin: 0;
+    height:415px;
+    height: 413px;
+    overflow: hidden;
+}
+.bim-body div {
+    height: 207px;
+    background-color: #fff;
+}
+.bim-body div.item-list {
+    color: #fff;
+    position: relative;
+    padding: 0 5px;
+    width:33.333333%;
+    float: left;
+}
+.bim-body div.item-list h2 {
+    line-height:35px;
+}
+.bim-body div.item-list span {
+    width: 140px;
+    height: 40px;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin: -20px 0 0 -70px;
+}
+.bim-body div#gs {
+    background-color: #2196F3;
+}
+.bim-body div#yq {
+    background-color: #f44336;
+}
+.bim-body div#jl {
+    background-color: #673ab7;
+}
+.bim-body div#ys {
+    background-color: #8bc34a;
+}
+.bim-body div#yf {
+    background-color: #009688;
+}
+.bim-body div#wzf {
+    background-color: #ff5722;
+}
+@media (min-width: 1400px) {
+    .container {
+        width: 1370px;
+    }
+}

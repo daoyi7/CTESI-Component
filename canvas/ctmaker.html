@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hello World</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="js/cm7.js"></script>
+</head>
+<body>
+
+<object id="__g" type="application/x-cm-3d" style="height: 500px; width: 100%">
+</object>
+</body>
+<script type="text/javascript">
+    function addRow() {
+        window.parent.BC_QuestionBase.Insert();
+    }
+    var __g;
+    var __fcMap = {};     //key: guid, value: fc
+    var __fcGeoMap = {};  //key: guid, value: geoNames[]
+    var __fds;
+    var __datasetCRS = null;
+    var __rootId;
+    function gc() {
+        __g.onmouseclickselect = fnMouseClickSelect;
+        __g.interactMode = gviInteractMode.gviInteractSelect;
+    }
+    function fullScreen() {
+        __g.fullScreen = !__g.fullScreen;
+    }
+    function fnMouseClickSelect(pickResult, intersectPoint, mask, eventSender) {
+        if (pickResult == null)
+            return;
+        if (pickResult.type == gviObjectType.gviObjectTerrain) {
+            var elevatation = __g.terrain.getElevation(intersectPoint.x, intersectPoint.y, $("GetElevationType").selectedIndex);
+            alert("当前位置高程为:" + elevatation);
+        }
+    }
+    window.onload = function () {
+	function getEnumTextByIdx(enumObj, idx) {
+            for (var item in enumObj) {
+                var itemValue = enumObj[item];
+                if (itemValue == idx) {
+                    return item;
+                }
+            }
+        }
+
+        // 通过fid获取要素的字段属性值
+        function getAttrValueByFid(featureClassInfo, fid) {
+            // 连接信息
+            var connectionInfo = __g.new_ConnectionInfo;
+            //从featureClassInfo获取数据源的连接字符串，然后用此连接字符串进行连接
+            connectionInfo.fromConnectionString(featureClassInfo.dataSourceConnectionString);
+            // 数据源
+            var dataSource = __g.dataSourceFactory.openDataSource(connectionInfo);
+            // 数据集
+            var dataSet = dataSource.openFeatureDataset(featureClassInfo.dataSetName);
+            // 要素类
+            var featureClass = dataSet.openFeatureClass(featureClassInfo.featureClassName);
+            // 返回的字段属性集合
+            var attrValues = [];
+            // 通过fid获取行
+            var rowBuffer = featureClass.getRow(fid);
+            // 遍历字段
+            var fieldinfos = featureClass.getFields();
+            for (var i = 0; i < fieldinfos.count; i++) {
+                var fieldinfo = fieldinfos.get(i);
+                if (null == fieldinfo)
+                    continue;
+                // 字段各种属性，字段值
+                var fieldName = fieldinfo.name;
+                var value = rowBuffer.getValue(i);
+
+                var fieldValue = {};
+                fieldValue.name = fieldName;
+                fieldValue.alias = fieldinfo.alias;
+                // 字段类型是个枚举，分别获取枚举索引和值名称
+                fieldValue.typeIdx = fieldinfo.fieldType;
+                fieldValue.type = getEnumTextByIdx(gviFieldType, fieldinfo.fieldType);
+                fieldValue.value = value;
+
+                attrValues.push(fieldValue);
+            }
+
+            // 释放对象
+            rowBuffer.releaseObject();
+            featureClass.releaseObject();
+            dataSet.releaseObject();
+            dataSource.releaseObject();
+
+            return attrValues;
+        }
+
+        //鼠标选择事件
+        function onMouseClickSelect(pickResult, intersectPoint, mask, eventSender) {
+            // 点击地图的点
+            if (intersectPoint) {
+                // 点坐标
+                var x = intersectPoint.x;
+                var y = intersectPoint.y;
+                var z = intersectPoint.z;
+
+                alert("x:" + x + " y:" + y + " z:" + z);
+            }
+
+            // 选中的对象
+            if (pickResult) {
+                // 对象类型是FeatureLayer（矢量图层），也就是模型，因为模型都是通过矢量图层加载的
+                if (pickResult.type == gviObjectType.gviObjectFeatureLayer) {
+                    // 唯一id
+                    var fid = pickResult.featureId;
+                    // 图层
+                    var featureLayer = pickResult.featureLayer;
+                    // 图层名
+                    var featureLayerName = featureLayer.name;
+                    // featureClass信息（不是真正的FeatureClass对象）
+                    var featureClassInfo = featureLayer.featureClassInfo;
+                    // featureClass名称
+                    var featureClassname = featureClassInfo.featureClassName;
+
+                    // 点击要素的字段的属性（字段名，别名，类型。。。）以及字段值
+                    // PS：获取字段属性和值需要连接数据源，不是必须的话就不要获取了
+                    var attrValues = getAttrValueByFid(featureClassInfo, fid);
+
+                    var msg = "";
+
+                    //遍历字段
+                    for (var i = 0; i < attrValues.length; i++) {
+                        var attrValue = attrValues[i];
+
+                        //字段名
+                        var fieldName = attrValue.name;
+                        //字段别名
+                        var alias = attrValue.alias;
+                        // 字段类型枚举索引
+                        var typeIdx = attrValue.typeIdx;
+                        //字段类型枚举名称
+                        var type = attrValue.type;
+                        //字段值
+                        var value = attrValue.value;
+
+                        msg += "字段名：" + fieldName + "；" + "字段别名：" + alias + "；" + "字段类型枚举索引：" + typeIdx + "；" + "字段类型枚举名称：" + type + "；" + "字段值：" + value + "\n";
+                    }
+
+                    alert(msg);
+                }
+            }
+        }
+	
+	
+        //初始化三维控件
+        initAxControl();
+        // 加载FDB场景
+        var cepPath = "//172.16.17.14/pub/CityMaker安装程序/Package_xiangyang/xiangyang.cep";
+        __g.project.open(cepPath, false, "");
+        __g.camera.flyTime = 5;
+		
+		// 鼠标拾取模式（此模式下可进行鼠标拾取操作）
+            __g.interactMode = gviInteractMode.gviInteractSelect;
+
+            //mouseSelectObjectMask影响点击什么类型对象会触发onmouseclickselect事件
+
+            // 鼠标拾取的时候需要过滤的对象类型：地形
+            //__g.mouseSelectObjectMask = gviMouseSelectObjectMask.gviSelectTerrain;
+            // 鼠标拾取的时候需要过滤的对象类型：矢量图层
+            //__g.mouseSelectObjectMask = gviMouseSelectObjectMask.gviSelectFeatureLayer;
+            // 鼠标拾取的时候需要过滤的对象类型：全部
+            __g.mouseSelectObjectMask = gviMouseSelectObjectMask.gviSelectAll;
+
+            //绑定鼠标选择事件
+            __g.onmouseclickselect = onMouseClickSelect;
+		
+    }
+    function initAxControl() {
+        __g = $("__g");  // 兼容Firefox
+//__g =document.getElementById("__g");
+        // 初始化RenderControl控件
+        var ps = __g.new_PropertySet;
+        ps.setProperty("RenderSystem", "OpenGL");
+        var bInit = __g.initialize(true, ps);
+        if (!bInit) {
+            alert("三维控件初始化失败!");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+</html>
